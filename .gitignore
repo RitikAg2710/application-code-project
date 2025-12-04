@@ -1,0 +1,80 @@
+# ==========================
+# Node.js (backend + frontend)
+# ==========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment files
+.env
+.env.*
+*.env.local
+
+# build artifacts
+dist/
+build/
+.cache/
+.tmp/
+
+# logs
+logs/
+*.log
+log.txt
+
+# coverage reports (optional)
+coverage/
+
+# ==========================
+# React (frontend)
+# ==========================
+# usual react build folder
+build/
+*.DS_Store
+
+# ==========================
+# Docker
+# ==========================
+# Do not ignore Dockerfile
+# But ignore local build artifacts
+*.tar
+
+# ==========================
+# Editor / OS files
+# ==========================
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+
+# ==========================
+# Python (if any scripts)
+// ignore virtual envs
+venv/
+__pycache__/
+
+# ==========================
+# Terraform (IMPORTANT)
+# ==========================
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# ==========================
+# Kubernetes
+# ==========================
+# (we don't ignore YAMLs)
+# ignore local k8s output
+*.out
+
+# ==========================
+# Jenkins
+# ==========================
+# Nothing to ignore here unless artifacts generated
+jenkins_home/
+
+# =================
