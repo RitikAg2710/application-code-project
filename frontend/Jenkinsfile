@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = "ap-south-1"
+        ECR_REPO = "439289764452.dkr.ecr.ap-south-1.amazonaws.com/frontend"
+        IMAGE_TAG = "v${env.BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Pull Code') {
+            steps {
+                git 'https://github.com/RitikAg2710/application-code-k8s.git'
+            }
+        }
+
+        stage('Login to ECR') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION | docker login \
+                --username AWS --password-stdin $ECR_REPO
+                '''
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build -t $ECR_REPO:$IMAGE_TAG frontend/
+                '''
+            }
+        }
+
+        stage('Push') {
+            steps {
+                sh '''
+                docker push $ECR_REPO:$IMAGE_TAG
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Frontend Image: $ECR_REPO:$IMAGE_TAG"
+        }
+    }
+}
