@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Pull Code') {
             steps {
-                git 'https://github.com/RitikAg2710/application-code-k8s.git'
+                git branch: 'main', url: 'https://github.com/RitikAg2710/application-code-k8s.git'
             }
         }
 
